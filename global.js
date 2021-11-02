@@ -8,6 +8,7 @@
 // console.log(__dirname); // C:\Users\Dmitriy\Documents\IT\JS\node.js
 // console.log(__filename); // C:\Users\Dmitriy\Documents\IT\JS\node.js\global.js
 
+// console.log(process);
 // console.log(process.env);
 // console.log(process.argv);
 
