@@ -1,19 +1,15 @@
-// #2 Глобальные объекты (Global Objects)
-// console.log(global);
+console.log(global);
 
-// setTimeout(() => {
-// 	console.log('Hello');
-// }, 2000);
+setTimeout(() => console.log('Hi'), 2000);
 
-// console.log(__dirname); // C:\Users\Dmitriy\Documents\IT\JS\node.js
-// console.log(__filename); // C:\Users\Dmitriy\Documents\IT\JS\node.js\global.js
+console.log('dirname:', __dirname);
+console.log('filename:', __filename);
+console.log('process.env', process.env);
+console.log('process.argv', process.argv);
 
-// console.log(process);
-// console.log(process.env);
-// console.log(process.argv);
-
-const url = new URL('https://yandex.ru/news/name#test');
-console.log(url.hostname); // yandex.ru
-console.log(url.href); // https://yandex.ru/news/name#test
-console.log(url.pathname); // /news/name
-console.log(url.hash); // #test
+const url = new URL('https://localhost:8080/users/admin#1');
+console.log(url.hostname);
+console.log(url.port);
+console.log(url.href);
+console.log(url.pathname);
+console.log(url.hash);
