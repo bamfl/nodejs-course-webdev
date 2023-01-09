@@ -32,7 +32,7 @@ const start = async () => {
     });
 
     app.listen(PORT, () => {
-      console.log(chalk.whiteBright.bgGreen(`Server started at ${PORT}`));
+      console.log(chalk.whiteBright.bgGreen(`Render server cool started at ${PORT}`));
     });
   } catch (e) {
     console.error(chalk.whiteBright.bgRed(e));
