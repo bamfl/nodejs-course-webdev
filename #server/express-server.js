@@ -1,8 +1,11 @@
 const express = require("express");
 const app = express();
 const PORT = 3000;
+
 const path = require("node:path");
+
 const morgan = require("morgan");
+
 const mongoose = require("mongoose");
 const mongooseDBURL =
   "mongodb+srv://Dmitriy:qwas1234@cluster0.zchmymg.mongodb.net/node-learn?retryWrites=true&w=majority";
@@ -52,27 +55,53 @@ app.get("/old-page", (req, res) => {
 
 app.get("/api/users", async (req, res) => {
   try {
-    const collection = await mongoose.connection.db.collection("users");
+    const users = await UserModel.find();
 
-    collection.find({}).toArray((err, users) => {
-      res.status(200).send(users);
-    });
+    res.status(200).send(users);
   } catch (error) {
     res.status(500);
+  }
+});
+
+app.get("/api/users/:id", async (req, res) => {
+  try {
+    const user = await UserModel.findById(req.params.id);
+
+    res.status(200).send(user);
+  } catch (error) {
+    res.status(500).sendFile(getPath(["pages", "404.html"]));
+  }
+});
+
+app.put("/api/users/update/:id", async (req, res) => {
+  try {
+    const updatedUser = await UserModel.findByIdAndUpdate(req.params.id, { name: req.body.name }, { new: true });
+
+    res.status(200).send({ user: updatedUser });
+  } catch (error) {
+    res.status(503).send({ message: "fail" });
   }
 });
 
 app.post("/api/users/add", async (req, res) => {
   const user = req.body;
 
-  const userModel = new UserModel(user);
-
   try {
-    const response = await userModel.save();
-    res.status(201).send({ message: "success", response });
-  } catch (e) {
-    console.log(e);
+    const createdUser = await UserModel.create(user);
+    res.status(201).send({ message: "success", user: createdUser });
+  } catch (error) {
+    console.log(error);
     res.status(503).send({ message: "fail" });
+  }
+});
+
+app.delete("/api/users/delete/:id", async (req, res) => {
+  try {
+    await UserModel.findOneAndDelete({ _id: req.params.id });
+    res.status(200).send({ message: "deleted" });
+  } catch (error) {
+    console.log(error);
+    res.status(503).send({ error });
   }
 });
 
