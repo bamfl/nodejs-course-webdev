@@ -1,16 +1,17 @@
 {
-  "name": "nodejs",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "basicConcepts.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon ./#server/express-server.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bamfl/nodejs.git"
   },
-  "type": "commonjs",
+  "type": "module",
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -22,8 +23,13 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "chalk": "^5.2.0",
+    "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mongoose": "^6.8.3",
     "morgan": "^1.10.0"
+  },
+  "engines": {
+    "node": "16.17.0"
   }
 }
